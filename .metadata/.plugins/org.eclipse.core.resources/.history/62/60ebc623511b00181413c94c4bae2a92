@@ -1,0 +1,6 @@
+package br.senai.model;
+
+public class Contrato {
+
+	private int id;
+}

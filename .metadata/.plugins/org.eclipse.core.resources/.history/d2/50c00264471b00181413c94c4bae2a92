@@ -1,0 +1,42 @@
+package br.senai.jpa;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+public abstract class JPAAbstract<T> extends JPAConnection {
+	public void incluir(T p1) {
+		EntityManager em = getEntityManager();
+		em.getTransaction().begin();
+		em.persist(p1);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	public void alterar(T o) {
+		EntityManager em = this.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(o);
+		em.getTransaction().commit();
+	}
+	
+	public void deletar(int id) {
+		T o = this.buscarPorId(id);
+		
+		EntityManager em = this.getEntityManager();
+		em.getTransaction().begin();
+		em.remove(o);
+		em.getTransaction().commit();
+	}
+
+	private T buscarPorId(int id) {
+		String jpql = "select c from "+getEntityName() + " c where c.id = :id	";
+		Query query = super.getQuery(jpql);
+		
+		query.setParameter("id", id);
+		
+		List<T> list = query.getResultList();
+		return null;
+	}
+
+	public abstract String getEntityName();
+}

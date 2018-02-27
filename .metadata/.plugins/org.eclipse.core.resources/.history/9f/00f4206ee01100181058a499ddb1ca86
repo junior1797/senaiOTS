@@ -1,0 +1,18 @@
+package senai.comjpa.dao.jpa;
+
+import senai.comjpa.pojo.Estado;
+
+public class RunnerJPA {
+
+	public static void main(String[] args) {
+		Estado sc = new Estado();
+		sc.setId(1);
+		sc.setNome("Joinville");
+		sc.setUF("SC");
+		
+		JPAConnection jpa = new JPAConnection();
+		jpa.incluir(sc);
+		System.out.println("Estado cadastrado com o id: "+sc.getId());
+	}
+
+}

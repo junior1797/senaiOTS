@@ -1,0 +1,6 @@
+package br.senai.dao;
+
+public interface PessoaDAO {
+
+	public void alterar(Pessoa p);
+}

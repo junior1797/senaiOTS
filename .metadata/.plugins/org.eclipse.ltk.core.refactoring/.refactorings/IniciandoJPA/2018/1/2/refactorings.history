@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;persistence.xml&apos; to &apos;IniciandoJPA/META-INF&apos;&#x0D;&#x0A;- Original project: &apos;IniciandoJPA&apos;&#x0D;&#x0A;- Destination element: &apos;IniciandoJPA/META-INF&apos;&#x0D;&#x0A;- Original element: &apos;persistence.xml&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="/META-INF" element1="WebContent/META-INF/persistence.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1515851853830" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,8 @@
+package br.senai.dao;
+
+import br.senai.jpa.JPAAbstract;
+import br.senai.model.Contrato;
+
+public class ContratoDAOImpl extends JPAAbstract<Contrato> implements ContratoDAO {
+
+}

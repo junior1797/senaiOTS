@@ -1,0 +1,6 @@
+package br.senai.jpa;
+
+public class Snippet {
+	<property name="hibernate.show_sql" value="true"/>
+}
+

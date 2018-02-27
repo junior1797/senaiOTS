@@ -1,0 +1,11 @@
+package br.senai.dao;
+
+import br.senai.model.Contrato;
+
+public interface ContratoDAO {
+
+	public void alterar(Contrato cont);
+	public void deletar(int id);
+	public void incluir(Contrato cont);
+	public Contrato buscarPorId(int id);
+}

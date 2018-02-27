@@ -1,0 +1,11 @@
+package br.senai.dao;
+
+import br.senai.model.Pessoa;
+
+public interface PessoaDAO {
+
+	public void alterar(Pessoa p);
+	public void deletar(int id);
+	public void incluir(Pessoa p);
+	public Pessoa buscaPorId(int id);
+}

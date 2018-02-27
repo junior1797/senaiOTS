@@ -1,0 +1,24 @@
+package br.senai.dao;
+
+import java.util.List;
+
+import javax.persistence.Query;
+
+import br.senai.jpa.JPAAbstract;
+import br.senai.model.Pessoa;
+
+public class PessoaDAOImpl extends JPAAbstract<Pessoa> implements PessoaDAO {
+
+	@Override
+	public List<Pessoa> buscarPessoas() {
+		String jpql = "";
+			 jpql = "from Pessoa where nome like '%e%'";
+		
+		Query query = super.getQuery(jpql);
+		List<Pessoa> pessoas = query.getResultList();
+		for (Pessoa pessoa : pessoas) {
+			System.out.println(pessoa.getNome());
+		}
+ 		return null;
+	}
+}

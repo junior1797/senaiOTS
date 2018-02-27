@@ -1,0 +1,21 @@
+package br.senai.jpa;
+
+import javax.persistence.EntityManager;
+
+public abstract class JPAAbstract<T> extends JPAConnection {
+	public void incluir(T p1) {
+		EntityManager em = getEntityManager();
+		em.getTransaction().begin();
+		em.persist(p1);
+		em.getTransaction().commit();
+		em.close();
+	}
+	
+	public void alterar(T o) {
+		EntityManager em = this.getEntityManager();
+		em.getTransaction().begin();
+		em.merge(o);
+	}
+
+	public abstract String getEntityName();
+}

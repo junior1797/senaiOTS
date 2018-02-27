@@ -1,0 +1,9 @@
+package br.senai.model;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Contrato {
+
+	private int id;
+}

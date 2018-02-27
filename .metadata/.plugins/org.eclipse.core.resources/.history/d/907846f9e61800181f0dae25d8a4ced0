@@ -1,0 +1,11 @@
+package br.senai.model;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Pessoa {
+
+	private int id;
+	private String nome;
+	privater Date datae_nasc
+}

@@ -1,0 +1,150 @@
+package br.senai.runner;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import br.senai.dao.ContratoDAOImpl;
+import br.senai.dao.PessoaDAOImpl;
+import br.senai.model.Contrato;
+import br.senai.model.Pessoa;
+
+public class Runner {
+	public static void main(String[] args) {
+
+		// Faz a inclusao de uma pessoa
+		Runner.incluirPessoa();
+		// Runner.buscarPessoas();
+		// Runner.alterarPessoa();
+		//Runner.excluirPessoa();
+		// Runner.alterarContrato();
+		// Runner.excluirContrato();
+
+		System.exit(0);
+	}
+
+	private static void excluirContrato() {
+		ContratoDAOImpl contratoDAO = new ContratoDAOImpl();
+
+		contratoDAO.buscarPorId(1);
+		contratoDAO.deletar(1);
+
+		System.out.println("Contrato deletado com sucesso");
+
+	}
+
+	private static void alterarContrato() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_fim_contrato = null;
+		ContratoDAOImpl contratoDAO = new ContratoDAOImpl();
+
+		try {
+			data_fim_contrato = sdf.parse("25/02/2040");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Contrato cont = contratoDAO.buscarPorId(1);
+
+		cont.setClausulas("Aluguel Renovado");
+		cont.setData_fim_contrato(data_fim_contrato);
+
+		contratoDAO.alterar(cont);
+
+		System.out.println("Contrato alterado com Sucesso");
+
+	}
+
+	private static void incluirContrato(Pessoa p) {
+		PessoaDAOImpl pessoaDAO = new PessoaDAOImpl();
+		Contrato cont = new Contrato();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_inicio_contrato = null;
+		Date data_fim_contrato = null;
+		ContratoDAOImpl contratoDAO = new ContratoDAOImpl();
+		
+		Pessoa p1 = pessoaDAO.buscarPorId(1);
+		
+		cont.setContratado(p);
+		cont.setContratante(p1);
+		cont.setClausulas("Aluguel");
+
+		try {
+			data_inicio_contrato = sdf.parse("05/02/2010");
+			data_fim_contrato = sdf.parse("25/02/2019");
+			cont.setData_inicio_contrato(data_inicio_contrato);
+			cont.setData_fim_contrato(data_fim_contrato);
+
+			contratoDAO.incluir(cont);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void excluirPessoa() {
+		PessoaDAOImpl pessoaDAO = new PessoaDAOImpl();
+
+		Pessoa pessoa = pessoaDAO.buscarPorId(2);
+
+		pessoaDAO.deletar(3);
+
+		pessoa = pessoaDAO.buscarPorId(3);
+
+		System.out.println("Objeto pesquisado após a exclusão " + pessoa);
+
+	}
+
+	private static void alterarPessoa() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		PessoaDAOImpl pessoaDAO = new PessoaDAOImpl();
+		Date data_nasc = null;
+
+		try {
+			data_nasc = sdf.parse("17/05/2003");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Pessoa pessoa = pessoaDAO.buscarPorId(4);
+
+		System.out.println("Objeto pessoa pesquisado " + pessoa);
+
+		pessoa.setNome("Pablo Grave");
+		pessoa.setCpf("987.654.487-89");
+		pessoa.setData_nasc(data_nasc);
+
+		pessoaDAO.alterar(pessoa);
+
+		pessoa = pessoaDAO.buscarPorId(4);
+
+		System.out.println("Objeto Pessoa após a alteracao " + pessoa);
+
+	}
+
+	private static void buscarPessoas() {
+		PessoaDAOImpl pessoaDAO = new PessoaDAOImpl();
+		pessoaDAO.buscarPessoas();
+	}
+
+	private static void incluirPessoa() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date data_nasc = null;
+		PessoaDAOImpl pessoaDAO = new PessoaDAOImpl();
+		Pessoa p = new Pessoa();
+		p.setNome("Edison Schulz Junior");
+		p.setNome_mae("Solange Hobold");
+		p.setNome_pai("Edison Schulz");
+		p.setCpf("098.267.459-79");
+		p.setRg("6.724.246");
+
+		try {
+			data_nasc = sdf.parse("25/08/1993");
+			p.setData_nasc(data_nasc);
+
+			Runner.incluirContrato(p);
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
